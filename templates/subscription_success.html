@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Success - Trueflutter Prime</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .success-container {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            color: var(--success-color);
+            margin-bottom: 2rem;
+        }
+        
+        .success-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .success-message {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .next-steps {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .next-steps h3 {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .app-download {
+            margin-top: 3rem;
+        }
+        
+        .app-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .app-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .app-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--dark-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .app-btn:hover {
+            background-color: #222;
+        }
+        
+        .app-btn i {
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+        }
+        
+        .app-btn span {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            line-height: 1.2;
+        }
+        
+        .app-btn small {
+            font-size: 0.7rem;
+        }
+        
+        .app-btn strong {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Trueflutter Prime</div>
+            <div class="tagline">Your Journey to Love Begins</div>
+        </div>
+    </header>
+
+    <section class="success-container">
+        <div class="container">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1 class="success-title">Subscription Successful!</h1>
+            <p class="success-message">
+                Welcome to Trueflutter Prime, {{ user.first_name }}! Your subscription has been activated, and you're now ready to connect with your matches.
+            </p>
+            
+            <div class="next-steps">
+                <h3>What Happens Next?</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Download the Trueflutter App</div>
+                        <p>Get our mobile app to access your matches on the go and receive notifications when someone is interested in you.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Review Your Matches</div>
+                        <p>Your first set of matches is already available. Review their profiles and express interest in those you'd like to meet.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Connect and Meet</div>
+                        <p>When there's mutual interest, we'll facilitate an introduction. From there, you can chat and arrange to meet in person.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Weekly Updates</div>
+                        <p>Every week, you'll receive new match recommendations based on your preferences and feedback.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-download">
+                <h3 class="app-title">Download the Trueflutter App</h3>
+                <div class="app-buttons">
+                    <a href="#" class="app-btn">
+                        <i class="fab fa-apple"></i>
+                        <span>
+                            <small>Download on the</small>
+                            <strong>App Store</strong>
+                        </span>
+                    </a>
+                    <a href="#" class="app-btn">
+                        <i class="fab fa-google-play"></i>
+                        <span>
+                            <small>GET IT ON</small>
+                            <strong>Google Play</strong>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+            <p>&copy; 2025 Trueflutter Prime. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

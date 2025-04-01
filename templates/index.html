@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trueflutter Prime AI - Find Your Perfect Match</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Trueflutter Prime</div>
+            <div class="tagline">AI-Powered Matchmaking for Serious Relationships</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Find Your Perfect Match with AI</h1>
+            <p>Trueflutter Prime uses advanced AI technology to connect you with compatible partners who share your values and relationship goals.</p>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="form-title">Start Your Journey</h2>
+                <div class="success-message" id="successMessage">
+                    Thank you! We'll be in touch shortly to schedule your AI matchmaking call.
+                </div>
+                <form id="signupForm" action="/submit" method="POST">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-block">Get Matched Now</button>
+                    </div>
+                    <div class="spinner" id="loadingSpinner"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="features-title">Why Choose Trueflutter Prime AI?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">AI-Powered Matching</h3>
+                    <p>Our advanced AI analyzes your preferences, personality, and relationship goals to find truly compatible matches.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="feature-title">Personalized Experience</h3>
+                    <p>Have a conversation with our AI matchmaker to create your detailed relationship profile.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="feature-title">Quality Matches</h3>
+                    <p>We focus on meaningful connections with people who are serious about finding a committed relationship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+            <p>&copy; 2025 Trueflutter Prime. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading spinner
+            document.getElementById('loadingSpinner').classList.add('show');
+            
+            // Simulate form submission (will be replaced with actual AJAX in production)
+            setTimeout(function() {
+                // Hide spinner
+                document.getElementById('loadingSpinner').classList.remove('show');
+                
+                // Show success message
+                document.getElementById('successMessage').classList.add('show');
+                
+                // Clear form
+                document.getElementById('signupForm').reset();
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

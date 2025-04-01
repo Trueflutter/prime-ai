@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.first_name }}'s Dating Profile - Trueflutter Prime</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #ff4b6e;
+            --secondary-color: #7e57c2;
+            --dark-color: #333333;
+            --light-color: #f8f9fa;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            padding: 40px;
+        }
+        
+        .document-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .document-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .logo {
+            margin-bottom: 20px;
+        }
+        
+        .logo img {
+            height: 60px;
+        }
+        
+        .document-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .document-body {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 30px;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .profile-summary {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .profile-summary p {
+            margin-bottom: 15px;
+        }
+        
+        .profile-summary p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .traits-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .trait {
+            background-color: #f8e5ea;
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .match-container {
+            margin-top: 30px;
+        }
+        
+        .match-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .match-name {
+            color: var(--primary-color);
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .match-details {
+            margin-bottom: 15px;
+        }
+        
+        .match-details p {
+            margin-bottom: 5px;
+        }
+        
+        .match-details span {
+            font-weight: 500;
+        }
+        
+        .match-interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .interest {
+            background-color: #e9e4f5;
+            color: var(--secondary-color);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+        }
+        
+        .compatibility-reasons {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .compatibility-reasons h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .compatibility-reasons ul {
+            padding-left: 20px;
+        }
+        
+        .compatibility-reasons li {
+            margin-bottom: 5px;
+        }
+        
+        .next-steps {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .next-steps h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .next-steps ol {
+            padding-left: 20px;
+        }
+        
+        .next-steps li {
+            margin-bottom: 10px;
+        }
+        
+        .cta-container {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8e5ea;
+            border-radius: 10px;
+        }
+        
+        .cta-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .document-footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .document-footer p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="document-container">
+        <div class="document-header">
+            <div class="logo">
+                <!-- Logo would be included here in a real document -->
+                <h1>Trueflutter Prime</h1>
+            </div>
+            <h1 class="document-title">{{ user.first_name }}'s Dating Profile</h1>
+            <p class="document-subtitle">Created on {{ generated_date }}</p>
+        </div>
+        
+        <div class="document-body">
+            <div class="section">
+                <h2 class="section-title">Your Dating Profile Summary</h2>
+                
+                <div class="profile-summary">
+                    {% if user.profile.parsed is defined and not user.profile.parsed %}
+                        <p>{{ user.profile.profile_text }}</p>
+                    {% else %}
+                        <p><strong>About You:</strong> {{ user.profile.personality_traits|join(', ') }}</p>
+                        
+                        <p><strong>Your Values:</strong></p>
+                        <div class="traits-container">
+                            {% for value in user.profile.values %}
+                                <span class="trait">{{ value }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <p><strong>Relationship Goals:</strong> {{ user.profile.relationship_goals }}</p>
+                        
+                        <p><strong>Interests & Lifestyle:</strong></p>
+                        <div class="traits-container">
+                            {% for interest in user.profile.interests %}
+                                <span class="trait">{{ interest }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <p><strong>What You're Looking For:</strong> {{ user.profile.partner_preferences }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Your Potential Matches</h2>
+                <p>Based on your profile and preferences, we've identified these potential matches for you:</p>
+                
+                <div class="match-container">
+                    {% for match in user.matches %}
+                        <div class="match-card">
+                            <h3 class="match-name">{{ match.name }}, {{ match.age }}</h3>
+                            <div class="match-details">
+                                <p><span>Location:</span> {{ match.location }}</p>
+                                <p><span>Occupation:</span> {{ match.occupation }}</p>
+                                <p><span>Looking for:</span> {{ match.relationship_goals }}</p>
+                            </div>
+                            
+                            <p><strong>Interests:</strong></p>
+                            <div class="match-interests">
+                                {% for interest in match.interests %}
+                                    <span class="interest">{{ interest }}</span>
+                                {% endfor %}
+                            </div>
+                            
+                            <p><strong>Values:</strong></p>
+                            <div class="match-interests">
+                                {% for value in match.values %}
+                                    <span class="interest">{{ value }}</span>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="compatibility-reasons">
+                                <h4>Why We Think You'll Match</h4>
+                                <ul>
+                                    {% if user.profile.interests is defined and match.interests is defined %}
+                                        {% set interest_overlap = user.profile.interests|intersect(match.interests) %}
+                                        {% if interest_overlap %}
+                                            <li>You both enjoy {{ interest_overlap|join(', ') }}</li>
+                                        {% endif %}
+                                    {% endif %}
+                                    
+                                    {% if user.profile.values is defined and match.values is defined %}
+                                        {% set value_overlap = user.profile.values|intersect(match.values) %}
+                                        {% if value_overlap %}
+                                            <li>You share these values: {{ value_overlap|join(', ') }}</li>
+                                        {% endif %}
+                                    {% endif %}
+                                    
+                                    {% if user.profile.relationship_goals is defined and match.relationship_goals is defined %}
+                                        <li>Your relationship goals align</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Next Steps</h2>
+                
+                <div class="next-steps">
+                    <h3>How to Connect with Your Matches</h3>
+                    <ol>
+                        <li>Subscribe to Trueflutter Prime for $49/month to unlock full access to your matches.</li>
+                        <li>Download the Trueflutter app to view and connect with your matches on the go.</li>
+                        <li>Express interest in the matches you'd like to meet.</li>
+                        <li>When there's mutual interest, we'll facilitate an introduction.</li>
+                        <li>Each week, you'll receive new match recommendations based on your preferences.</li>
+                    </ol>
+                </div>
+                
+                <div class="cta-container">
+                    <p class="cta-text">Ready to meet your matches?</p>
+                    {% if preview_mode is defined and preview_mode %}
+                        <a href="#" class="cta-button">Subscribe Now</a>
+                    {% else %}
+                        <p>Visit <strong>trueflutter.com/prime/subscribe</strong> to get started</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="document-footer">
+            <p>This profile was created based on your conversation with the Trueflutter Prime AI Matchmaker.</p>
+            <p>&copy; 2025 Trueflutter Prime. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

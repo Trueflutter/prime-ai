@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Dating Profile - Trueflutter Prime</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .profile-container {
+            padding: 3rem 0;
+        }
+        
+        .profile-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .profile-title {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-subtitle {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .profile-section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .profile-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .trait-badge {
+            background-color: #f8e5ea;
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .match-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .match-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .match-name {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .match-details {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .match-details span {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .match-interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .interest-badge {
+            background-color: #e9e4f5;
+            color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+        
+        .match-audio {
+            margin-top: 1rem;
+        }
+        
+        .cta-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .cta-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-btn:hover {
+            background-color: #e63e61;
+            transform: translateY(-3px);
+        }
+        
+        .profile-note {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Trueflutter Prime</div>
+            <div class="tagline">Your Personalized Dating Profile</div>
+        </div>
+    </header>
+
+    <section class="profile-container">
+        <div class="container">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <h1 class="profile-title">{{ user.first_name }}'s Dating Profile</h1>
+                    <p class="profile-subtitle">Created by Trueflutter Prime AI Matchmaker</p>
+                </div>
+                
+                {% if user.profile.parsed is defined and not user.profile.parsed %}
+                    <div class="profile-section">
+                        <p>{{ user.profile.profile_text }}</p>
+                    </div>
+                {% else %}
+                    <div class="profile-section">
+                        <h3 class="section-title">About You</h3>
+                        <p>{{ user.profile.personality_traits|join(', ') }}</p>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3 class="section-title">Your Values</h3>
+                        <div class="profile-traits">
+                            {% for value in user.profile.values %}
+                                <span class="trait-badge">{{ value }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3 class="section-title">Relationship Goals</h3>
+                        <p>{{ user.profile.relationship_goals }}</p>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3 class="section-title">Interests & Lifestyle</h3>
+                        <div class="profile-traits">
+                            {% for interest in user.profile.interests %}
+                                <span class="trait-badge">{{ interest }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3 class="section-title">What You're Looking For</h3>
+                        <p>{{ user.profile.partner_preferences }}</p>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="profile-card">
+                <div class="profile-header">
+                    <h2 class="profile-title">Your Potential Matches</h2>
+                    <p class="profile-subtitle">Based on your preferences and compatibility</p>
+                </div>
+                
+                <div class="matches-grid">
+                    {% for match in user.matches %}
+                        <div class="match-card">
+                            <h3 class="match-name">{{ match.name }}, {{ match.age }}</h3>
+                            <div class="match-details">
+                                <p><span>Location:</span> {{ match.location }}</p>
+                                <p><span>Occupation:</span> {{ match.occupation }}</p>
+                            </div>
+                            <div class="match-interests">
+                                {% for interest in match.interests %}
+                                    <span class="interest-badge">{{ interest }}</span>
+                                {% endfor %}
+                            </div>
+                            <p><span>Looking for:</span> {{ match.relationship_goals }}</p>
+                            <div class="match-audio">
+                                <p><small>Listen to {{ match.name }}'s voice:</small></p>
+                                <audio controls src="{{ url_for('static', filename=match.voice_clip) }}"></audio>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <p class="profile-note">Note: These are preview profiles. Subscribe to see full profiles and connect with your matches.</p>
+            </div>
+            
+            <div class="cta-container">
+                <p class="cta-text">Ready to connect with your matches? Subscribe to Trueflutter Prime for just $49/month.</p>
+                <a href="{{ url_for('subscribe') }}" class="cta-btn">Subscribe Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+            <p>&copy; 2025 Trueflutter Prime. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
